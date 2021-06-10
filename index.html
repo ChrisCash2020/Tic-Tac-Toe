@@ -11,11 +11,25 @@
       href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <h1>Tic-Tac-Toe</h1>
     <div class="main">
-      <h2 class="player-turn"></h2>
+      <div class="players">
+        <div>
+          <i class="fas first fa-user"></i>
+          <p>Player 1</p>
+        </div>
+        <div>
+          <i class="fas second fa-user"></i>
+          <p>Player 2</p>
+        </div>
+      </div>
       <div class="game-board">
         <div class="box"></div>
         <div class="box"></div>
@@ -28,7 +42,6 @@
         <div class="box"></div>
       </div>
     </div>
-    <input class="btn" type="button" value="Restart" />
   </body>
   <script src="./app.js"></script>
 </html>

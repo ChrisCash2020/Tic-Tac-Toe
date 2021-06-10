@@ -9,16 +9,33 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100vw;
   min-height: 100vh;
   font-family: 'Mulish', sans-serif;
   position: relative;
 }
-body h1 {
-  background-color: #b3af8f;
-  color: whitesmoke;
-  padding: 25px;
+.players {
+  display: flex;
+  flex-direction: row;
+  margin: 3vh 0;
+}
+.players i {
+  margin: 0 10px 0 0;
+}
+.second {
+  color: #40c9ff;
+}
+.players div {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  height: 36px;
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 5px;
 }
 .main {
   display: flex;
@@ -28,21 +45,16 @@ body h1 {
 }
 .game-board {
   display: grid;
-  grid-template-rows: 150px 150px 150px;
-  grid-template-columns: 150px 150px 150px;
+  gap: 10px;
+  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px;
 }
 .box {
-  background-color: whitesmoke;
-  border: 1px solid #555;
+  background-color: rgba(226, 232, 240, 0.4);
   display: flex;
+  box-shadow: 0 0 1px #ccc;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
-  color: #aaa;
   font-size: 5rem;
-}
-.btn {
-  border: 1px solid #555;
-  padding: 15px;
-  background-color: #b3af8f;
-  color: whitesmoke;
 }
