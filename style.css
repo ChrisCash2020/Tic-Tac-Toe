@@ -15,6 +15,80 @@ body {
   font-family: 'Mulish', sans-serif;
   position: relative;
 }
+form {
+  position: absolute;
+  top: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 450px;
+  width: 650px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 0 0 5px #ccc;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5vh 0;
+  height: 23%;
+  box-shadow: 0 0 9px #ccc;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.btn > .radio {
+  visibility: hidden;
+  position: absolute;
+}
+.btn div {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 85%;
+}
+.btn:hover,
+#submit:hover {
+  transform: scale(1.05);
+}
+.btn:active,
+#submit:active {
+  transform: scale(1.02);
+}
+.icon {
+  font-size: 3rem;
+  color: #ffe149;
+}
+.robo {
+  color: #40c9ff;
+}
+#second {
+  color: orangered;
+}
+form input {
+  color: black;
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+#submit {
+  margin-top: 2vh;
+  color: #fff;
+  text-shadow: 1px 1px #94949494;
+  box-shadow: 0 0 2px #ccc;
+  background-color: #40c9ff;
+  padding: 10px;
+  font-size: 1.1rem;
+}
 .players {
   display: flex;
   flex-direction: row;

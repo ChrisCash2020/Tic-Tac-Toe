@@ -1,8 +1,16 @@
+let formRadioBtn = document.querySelectorAll('form .radio');
+let formSubmit = document.querySelector('#submit');
+formSubmit.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (formRadioBtn[0].checked) console.log('one');
+  if (formRadioBtn[1].checked) console.log('two');
+});
 const gameBoard = (player) => {
   var count = 1;
   let boxes = document.querySelectorAll('.box');
   let firstPlayer = [];
   let secondPlayer = [];
+  let computerPlayer = [];
   let testOneMultiples = (numbers) => {
     numbers = numbers.sort((a, b) => b - a);
 
@@ -14,7 +22,6 @@ const gameBoard = (player) => {
     let arr6 = numbers.filter((x) => x === 0 || x == 1 || x === 2);
     let arr7 = numbers.filter((x) => x === 3 || x == 4 || x === 5);
     let arr8 = numbers.filter((x) => x === 6 || x == 7 || x === 8);
-    console.log(arr3);
     return arr8.length >= 3
       ? true
       : arr7.length >= 3
@@ -33,7 +40,6 @@ const gameBoard = (player) => {
       ? true
       : false;
   };
-  console.log(testOneMultiples([1, 4, 7]));
   boxes.forEach((box, index) => {
     box.addEventListener('click', (e) => {
       e.preventDefault();
