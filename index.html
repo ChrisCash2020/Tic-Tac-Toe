@@ -19,29 +19,48 @@
     />
   </head>
   <body>
-    <form action="">
-      <label class="btn">
+    <form action="" autocomplete="off">
+      <label class="labl">
         <input type="radio" class="radio" name="player-num" id="one-player" />
-        <div>
-          <i class="fas icon fa-user"></i>
-          <input type="text" name="" id="name" placeholder="Player One" />
-        </div>
-        <h1>VS</h1>
-        <div>
-          <i class="fas icon robo fa-robot"></i>
-          <input type="text" value="" placeholder="Computer" disabled />
+        <div class="btn">
+          <div>
+            <i class="fas icon fa-user"></i>
+            <input
+              type="text"
+              name="player-name"
+              placeholder="Player One"
+              disabled
+            />
+          </div>
+          <h1>VS</h1>
+          <div>
+            <i class="fas icon robo fa-robot"></i>
+            <input type="text" value="" placeholder="Computer" disabled />
+          </div>
         </div>
       </label>
-      <label class="btn">
+      <label class="labl">
         <input type="radio" class="radio" name="player-num" id="two-player" />
-        <div>
-          <i class="fas icon fa-user"></i>
-          <input type="text" name="" id="name1" placeholder="Player One" />
-        </div>
-        <h1>VS</h1>
-        <div>
-          <i id="second" class="fas icon fa-user"></i>
-          <input type="text" name="" id="name1" placeholder="Player Two" />
+        <div class="btn">
+          <div>
+            <i class="fas icon fa-user"></i>
+            <input
+              type="text"
+              name="player-name"
+              placeholder="Player One"
+              disabled
+            />
+          </div>
+          <h1>VS</h1>
+          <div>
+            <i id="second" class="fas icon fa-user"></i>
+            <input
+              type="text"
+              name="player-name"
+              placeholder="Player Two"
+              disabled
+            />
+          </div>
         </div>
       </label>
       <input type="submit" id="submit" value="Start Game" />

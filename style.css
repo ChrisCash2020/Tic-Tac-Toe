@@ -23,49 +23,48 @@ form {
   align-items: center;
   justify-content: center;
   height: 450px;
-  width: 650px;
+  width: 705px;
   border: 1px solid transparent;
   border-radius: 5px;
   z-index: 999;
   background-color: #fff;
   box-shadow: 0 0 5px #ccc;
 }
+.labl {
+  width: 89%;
+  cursor: pointer;
+}
 .btn {
   display: flex;
   flex-direction: row;
-  width: 85%;
-  padding: 0 10px;
+  width: 100%;
+  padding: 0 13%;
   align-items: center;
   justify-content: space-between;
   margin: 1.5vh 0;
-  height: 23%;
-  box-shadow: 0 0 9px #ccc;
-  border: 1px solid transparent;
+  height: 150px;
+  background-color: #f8f8f8;
+  border: 1px solid rgb(211, 211, 211);
   border-radius: 5px;
 }
-.btn > .radio {
-  visibility: hidden;
-  position: absolute;
-}
 .btn div {
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 85%;
 }
-.btn:hover,
-#submit:hover {
+.labl > input {
+  display: none;
+  position: absolute;
+  height: 5px;
+}
+.labl > .radio:checked + .btn {
+  box-shadow: 0 0 12px rgb(211, 211, 211);
   transform: scale(1.05);
 }
-.btn:active,
-#submit:active {
-  transform: scale(1.02);
-}
 .icon {
-  font-size: 3rem;
+  font-size: 4rem;
   color: #ffe149;
+  margin-bottom: 10px;
 }
 .robo {
   color: #40c9ff;
@@ -74,15 +73,19 @@ form {
   color: orangered;
 }
 form input {
+  width: 75%;
+  padding: 5px 0;
   color: black;
-  background-color: white;
+  outline: none;
+  /* background-color: transparent; */
   border-radius: 2px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(211, 211, 211);
   text-align: center;
 }
 #submit {
-  margin-top: 2vh;
+  margin-top: 0.5vh;
   color: #fff;
+  width: 115px;
   text-shadow: 1px 1px #94949494;
   box-shadow: 0 0 2px #ccc;
   background-color: #40c9ff;

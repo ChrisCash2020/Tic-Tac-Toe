@@ -1,10 +1,29 @@
-let formRadioBtn = document.querySelectorAll('form .radio');
+let form = document.querySelector('form');
+let formRadioBtns = document.querySelectorAll('form .radio');
+let onePlayerBtn = formRadioBtns[0];
+let twoPlayerBtn = formRadioBtns[1];
+let playerInputs = document.getElementsByName('player-name');
 let formSubmit = document.querySelector('#submit');
 formSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   if (formRadioBtn[0].checked) console.log('one');
   if (formRadioBtn[1].checked) console.log('two');
 });
+form.addEventListener('click', (e) => {
+  if (onePlayerBtn.checked || playerInputs[0].click()) {
+    playerInputs[0].disabled = false;
+  } else if (!onePlayerBtn.checked) {
+    playerInputs[0].disabled = true;
+  }
+  if (twoPlayerBtn.checked) {
+    playerInputs[1].disabled = false;
+    playerInputs[2].disabled = false;
+  } else if (!twoPlayerBtn.checked) {
+    playerInputs[1].disabled = true;
+    playerInputs[2].disabled = true;
+  }
+});
+
 const gameBoard = (player) => {
   var count = 1;
   let boxes = document.querySelectorAll('.box');
