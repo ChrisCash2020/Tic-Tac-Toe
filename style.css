@@ -47,6 +47,7 @@ form {
   border: 1px solid rgb(211, 211, 211);
   border-radius: 5px;
 }
+
 .btn div {
   display: flex;
   flex-direction: column;
@@ -66,8 +67,12 @@ form {
   color: #ffe149;
   margin-bottom: 10px;
 }
+.icon-change,
 .robo {
   color: #40c9ff;
+}
+.icon-constant {
+  color: #ffe149;
 }
 #second {
   color: orangered;
@@ -91,6 +96,14 @@ form input {
   background-color: #40c9ff;
   padding: 10px;
   font-size: 1.1rem;
+}
+.error-msg {
+  position: absolute;
+  bottom: 7.5%;
+  right: 35%;
+}
+#submit:disabled {
+  background-color: rgba(64, 201, 255, 0.5);
 }
 .players {
   display: flex;

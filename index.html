@@ -63,17 +63,18 @@
           </div>
         </div>
       </label>
-      <input type="submit" id="submit" value="Start Game" />
+      <input type="submit" id="submit" value="Start Game" disabled />
+      <p class="error-msg"></p>
     </form>
     <div class="main">
       <div class="players">
         <div>
-          <i class="fas first fa-user"></i>
-          <p>Player 1</p>
+          <i class="icon-constant fas first fa-user"></i>
+          <p id="one">Player 1</p>
         </div>
         <div>
-          <i class="fas second fa-user"></i>
-          <p>Player 2</p>
+          <i class="icon-change fas first fa-user"></i>
+          <p id="two">Computer</p>
         </div>
       </div>
       <div class="game-board">

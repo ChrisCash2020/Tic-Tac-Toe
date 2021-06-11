@@ -4,10 +4,24 @@ let onePlayerBtn = formRadioBtns[0];
 let twoPlayerBtn = formRadioBtns[1];
 let playerInputs = document.getElementsByName('player-name');
 let formSubmit = document.querySelector('#submit');
+let twoPlayerGame = false;
+let playerText = document.getElementById('one');
+let playerText2 = document.getElementById('two');
+let IconChange = document.querySelector('.icon-change');
+let errorMsg = document.querySelector('.error-msg');
+formRadioBtns.forEach((playerBtn) => {
+  playerBtn.addEventListener('click', (e) => {
+    playerBtn.checked
+      ? (formSubmit.disabled = false)
+      : (formSubmit.disabled = true);
+  });
+});
 formSubmit.addEventListener('click', (e) => {
   e.preventDefault();
-  if (formRadioBtn[0].checked) console.log('one');
-  if (formRadioBtn[1].checked) console.log('two');
+  let startGame;
+  twoPlayerBtn.checked ? (twoPlayerGame = true) : (twoPlayerGame = false);
+  gameBoard();
+  form.style.left = '-999px';
 });
 form.addEventListener('click', (e) => {
   if (onePlayerBtn.checked || playerInputs[0].click()) {
@@ -30,6 +44,9 @@ const gameBoard = (player) => {
   let firstPlayer = [];
   let secondPlayer = [];
   let computerPlayer = [];
+  let generatedComputerChoice = () => {
+    Math.round(Math.random() * 9);
+  };
   let testOneMultiples = (numbers) => {
     numbers = numbers.sort((a, b) => b - a);
 
@@ -59,27 +76,63 @@ const gameBoard = (player) => {
       ? true
       : false;
   };
-  boxes.forEach((box, index) => {
-    box.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (count >= 1) {
-        box.textContent = 'X';
-        firstPlayer.push(index);
-        if (testOneMultiples(firstPlayer) === true) {
-          alert('You Won');
+  if (twoPlayerGame == true) {
+    playerText.textContent = `${
+      playerInputs[1].value === '' ? 'Player 1' : playerInputs[1].value
+    }`;
+    playerText2.textContent = `${
+      playerInputs[2].value === '' ? 'Player 2' : playerInputs[2].value
+    }`;
+    if (IconChange.classList.contains('fa-robot')) {
+      IconChange.classList.remove('fa-robot');
+      IconChange.classList.add('fa-user');
+    } else {
+      IconChange.style.color = 'orangered';
+    }
+    boxes.forEach((box, index) => {
+      box.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (count >= 1 && box.textContent === '') {
+          box.textContent = 'X';
+          firstPlayer.push(index);
+          if (testOneMultiples(firstPlayer) === true) {
+            alert('You Won');
+          }
+          return count--;
+        } else if (count < 1 && box.textContent === '') {
+          box.textContent = 'O';
+          secondPlayer.push(index);
+          if (secondPlayer.length >= 3) {
+            if (testOneMultiples(secondPlayer) === true) {
+              alert('You Won');
+            }
+          }
+          return count++;
         }
-        return count--;
-      } else {
-        box.textContent = 'O';
-        secondPlayer.push(index);
-        if (secondPlayer.length >= 3) {
-          if (testOneMultiples(secondPlayer) === true) {
+      });
+    });
+  } else {
+    let count = 0;
+    playerText.textContent = `${
+      playerInputs[0].value === '' ? 'Player 1' : playerInputs[0].value
+    }`;
+    if (IconChange.classList.contains('fa-user')) {
+      IconChange.classList.remove('fa-user');
+      IconChange.classList.add('fa-robot');
+      IconChange.style.color = '#40c9ff';
+    }
+    boxes.forEach((box, index) => {
+      box.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (box.textContent === '') {
+          box.textContent = 'X';
+          count++;
+          firstPlayer.push(index);
+          if (testOneMultiples(firstPlayer) === true) {
             alert('You Won');
           }
         }
-        return count++;
-      }
+      });
     });
-  });
+  }
 };
-gameBoard();
