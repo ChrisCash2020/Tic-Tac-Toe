@@ -9,6 +9,18 @@ let playerText = document.getElementById('one');
 let playerText2 = document.getElementById('two');
 let IconChange = document.querySelector('.icon-change');
 let errorMsg = document.querySelector('.error-msg');
+let openBoard = document.querySelector('.board-toggle');
+let scoreBoard = document.querySelector('.score-board');
+let removeBoard = document.querySelector('.remove');
+let mainContainer = document.querySelector('.main');
+openBoard.addEventListener('click', (e) => {
+  scoreBoard.style.animation = 'var(--slide-board)';
+  mainContainer.style.animation = 'var(--slide-main)';
+});
+removeBoard.addEventListener('click', (e) => {
+  scoreBoard.style.animation = 'var(--reverse-board)';
+  mainContainer.style.animation = 'var(--reverse-main)';
+});
 formRadioBtns.forEach((playerBtn) => {
   playerBtn.addEventListener('click', (e) => {
     playerBtn.checked
@@ -74,6 +86,7 @@ const gameBoard = () => {
       }
     }
   };
+  let updateScore = () => {};
   if (twoPlayerGame == true) {
     playerText.textContent = `${
       playerInputs[1].value === '' ? 'Player 1' : playerInputs[1].value
