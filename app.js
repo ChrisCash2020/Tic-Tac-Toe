@@ -18,10 +18,9 @@ formRadioBtns.forEach((playerBtn) => {
 });
 formSubmit.addEventListener('click', (e) => {
   e.preventDefault();
-  let startGame;
   twoPlayerBtn.checked ? (twoPlayerGame = true) : (twoPlayerGame = false);
   gameBoard();
-  form.style.left = '-999px';
+  form.style.left = '-9999px';
 });
 form.addEventListener('click', (e) => {
   if (onePlayerBtn.checked || playerInputs[0].click()) {
@@ -37,44 +36,43 @@ form.addEventListener('click', (e) => {
     playerInputs[2].disabled = true;
   }
 });
-
-const gameBoard = (player) => {
-  var count = 1;
+const gameBoard = () => {
+  let count = 1;
   let boxes = document.querySelectorAll('.box');
   let firstPlayer = [];
   let secondPlayer = [];
-  let computerPlayer = [];
-  let generatedComputerChoice = () => {
-    Math.round(Math.random() * 9);
-  };
-  let testOneMultiples = (numbers) => {
-    numbers = numbers.sort((a, b) => b - a);
-
-    let arr1 = numbers.filter((x) => x % 4 === 0);
-    let arr2 = numbers.filter((x) => x % 3 === 0);
-    let arr3 = numbers.filter((x) => x % 2 === 0 && x < 7 && x != 0);
-    let arr4 = numbers.filter((x) => x === 1 || x == 4 || x === 7);
-    let arr5 = numbers.filter((x) => x === 2 || x == 5 || x === 8);
-    let arr6 = numbers.filter((x) => x === 0 || x == 1 || x === 2);
-    let arr7 = numbers.filter((x) => x === 3 || x == 4 || x === 5);
-    let arr8 = numbers.filter((x) => x === 6 || x == 7 || x === 8);
-    return arr8.length >= 3
+  let computerPlayer = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  let winnerChecker = (numbers) => {
+    let checker = (arr, target) => target.every((v) => arr.includes(v));
+    return checker(numbers, [0, 1, 2]) === true
       ? true
-      : arr7.length >= 3
+      : checker(numbers, [3, 4, 5]) === true
       ? true
-      : arr6.length >= 3
+      : checker(numbers, [6, 7, 8]) === true
       ? true
-      : arr5.length >= 3
+      : checker(numbers, [0, 3, 6]) === true
       ? true
-      : arr4.length >= 3
+      : checker(numbers, [1, 4, 7]) === true
       ? true
-      : arr3.length >= 3
+      : checker(numbers, [2, 5, 8]) === true
       ? true
-      : arr2.length >= 3
+      : checker(numbers, [0, 4, 8]) === true
       ? true
-      : arr1.length >= 3
+      : checker(numbers, [2, 4, 6]) === true
       ? true
       : false;
+  };
+  let generatedComputerChoice = (array) => {
+    let length = computerPlayer.length - 1;
+    if (length >= 0) {
+      let random = Math.round(Math.random() * length);
+      boxes[computerPlayer[random]].textContent = 'O';
+      array.push(computerPlayer[random]);
+      computerPlayer.splice(computerPlayer.indexOf(computerPlayer[random]), 1);
+      if (winnerChecker(array) === true) {
+        alert('Computer Won');
+      }
+    }
   };
   if (twoPlayerGame == true) {
     playerText.textContent = `${
@@ -95,7 +93,7 @@ const gameBoard = (player) => {
         if (count >= 1 && box.textContent === '') {
           box.textContent = 'X';
           firstPlayer.push(index);
-          if (testOneMultiples(firstPlayer) === true) {
+          if (winnerChecker(firstPlayer) === true) {
             alert('You Won');
           }
           return count--;
@@ -103,7 +101,7 @@ const gameBoard = (player) => {
           box.textContent = 'O';
           secondPlayer.push(index);
           if (secondPlayer.length >= 3) {
-            if (testOneMultiples(secondPlayer) === true) {
+            if (winnerChecker(secondPlayer) === true) {
               alert('You Won');
             }
           }
@@ -112,7 +110,6 @@ const gameBoard = (player) => {
       });
     });
   } else {
-    let count = 0;
     playerText.textContent = `${
       playerInputs[0].value === '' ? 'Player 1' : playerInputs[0].value
     }`;
@@ -126,12 +123,13 @@ const gameBoard = (player) => {
         e.preventDefault();
         if (box.textContent === '') {
           box.textContent = 'X';
-          count++;
+          computerPlayer.splice(computerPlayer.indexOf(index), 1);
           firstPlayer.push(index);
-          if (testOneMultiples(firstPlayer) === true) {
+          if (winnerChecker(firstPlayer) === true) {
             alert('You Won');
           }
         }
+        generatedComputerChoice(secondPlayer);
       });
     });
   }
