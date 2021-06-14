@@ -13,6 +13,10 @@ let openBoard = document.querySelector('.board-toggle');
 let scoreBoard = document.querySelector('.score-board');
 let removeBoard = document.querySelector('.remove');
 let mainContainer = document.querySelector('.main');
+let winnerBox = document.querySelector('.winner-box');
+let scoreCounters = document.querySelectorAll('.score-counter');
+let ply1 = 0;
+let ply2 = 0;
 openBoard.addEventListener('click', (e) => {
   scoreBoard.style.animation = 'var(--slide-board)';
   mainContainer.style.animation = 'var(--slide-main)';
@@ -82,11 +86,19 @@ const gameBoard = () => {
       array.push(computerPlayer[random]);
       computerPlayer.splice(computerPlayer.indexOf(computerPlayer[random]), 1);
       if (winnerChecker(array) === true) {
-        alert('Computer Won');
+        ply2++;
+        winnerBox.firstElementChild.textContent = `Computer Wins`;
+        updateScore();
       }
     }
   };
-  let updateScore = () => {};
+  let updateScore = (winner) => {
+    // gonna add a blur to winner box
+    //need to implement to new game and main menu button functionality
+    scoreCounters[0].textContent = `${ply1}`;
+    scoreCounters[1].textContent = `${ply2}`;
+    winnerBox.style.left = '50%';
+  };
   if (twoPlayerGame == true) {
     playerText.textContent = `${
       playerInputs[1].value === '' ? 'Player 1' : playerInputs[1].value
@@ -107,7 +119,9 @@ const gameBoard = () => {
           box.textContent = 'X';
           firstPlayer.push(index);
           if (winnerChecker(firstPlayer) === true) {
-            alert('You Won');
+            ply1++;
+            winnerBox.firstElementChild.textContent = `${playerText.textContent} Wins`;
+            updateScore();
           }
           return count--;
         } else if (count < 1 && box.textContent === '') {
@@ -115,7 +129,9 @@ const gameBoard = () => {
           secondPlayer.push(index);
           if (secondPlayer.length >= 3) {
             if (winnerChecker(secondPlayer) === true) {
-              alert('You Won');
+              ply2++;
+              winnerBox.firstElementChild.textContent = `${playerText2.textContent} Wins`;
+              updateScore();
             }
           }
           return count++;
@@ -139,7 +155,10 @@ const gameBoard = () => {
           computerPlayer.splice(computerPlayer.indexOf(index), 1);
           firstPlayer.push(index);
           if (winnerChecker(firstPlayer) === true) {
-            alert('You Won');
+            alert('u won');
+            ply1++;
+            winnerBox.firstElementChild.textContent = `${playerText.textContent} Wins`;
+            updateScore();
           }
         }
         generatedComputerChoice(secondPlayer);
@@ -147,3 +166,4 @@ const gameBoard = () => {
     });
   }
 };
+console.log(scoreCounters);
