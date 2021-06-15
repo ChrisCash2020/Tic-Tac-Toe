@@ -200,8 +200,8 @@ const gameBoard = () => {
             winnerBox.firstElementChild.textContent = `${playerText.textContent} wins`;
             updateScore();
           }
+          generatedComputerChoice(secondPlayer);
         }
-        generatedComputerChoice(secondPlayer);
       });
     });
   }
