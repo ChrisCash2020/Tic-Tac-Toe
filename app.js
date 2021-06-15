@@ -23,6 +23,7 @@ let gameStart = false;
 let ply1 = 0;
 let ply2 = 0;
 let round = 1;
+let draw = 0;
 openBoard.addEventListener('click', (e) => {
   scoreBoard.style.animation = 'var(--slide-board)';
   mainContainer.style.animation = 'var(--slide-main)';
@@ -65,6 +66,7 @@ const gameBoard = () => {
   let secondPlayer = [];
   let computerPlayer = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   let animate = (x) => {
+    draw++;
     if (x.textContent == 'X') {
       playerText.parentElement.style.transform = 'scale(1.15)';
       playerText.parentElement.style.borderColor = '#40c9ff';
@@ -75,6 +77,14 @@ const gameBoard = () => {
       playerText2.parentElement.style.borderColor = '#40c9ff';
       playerText.parentElement.style.transform = 'scale(0.9)';
       playerText.parentElement.style.borderColor = '#ccc';
+    }
+    if (
+      draw === 9 &&
+      winnerChecker(firstPlayer) === false &&
+      winnerChecker(secondPlayer) === false
+    ) {
+      winnerBox.firstElementChild.textContent = `Its a Tie!`;
+      updateScore();
     }
   };
   let winnerChecker = (numbers) => {
@@ -109,14 +119,13 @@ const gameBoard = () => {
           computerPlayer.indexOf(computerPlayer[random]),
           1
         );
+        if (winnerChecker(array) === true) {
+          ply2++;
+          winnerBox.firstElementChild.textContent = `You Lose!`;
+          updateScore();
+        }
       }
     }, 450);
-
-    if (winnerChecker(array) === true) {
-      ply2++;
-      winnerBox.firstElementChild.textContent = `You Lose!`;
-      updateScore();
-    }
   };
   let updateScore = () => {
     scoreCounters[0].textContent = `${ply1}`;
@@ -124,18 +133,6 @@ const gameBoard = () => {
     winnerBox.style.left = '50%';
     mainContainer.style.setProperty('--blur', 'blur(2px)');
   };
-  if (gameStart === true) {
-    boxes.every((box) => {
-      if (
-        (box.textContent != '' && winnerChecker(firstPlayer) === false) ||
-        winnerChecker(secondPlayer) === false
-      ) {
-        winnerBox.firstElementChild.textContent = `Its a Tie!`;
-        updateScore();
-      }
-    });
-  }
-
   if (twoPlayerGame == true) {
     gameStart = true;
     playerText.textContent = `${
@@ -211,6 +208,7 @@ const gameBoard = () => {
   optionInputs[0].addEventListener('click', (e) => {
     e.preventDefault();
     round++;
+    draw = 0;
     boxes.forEach((box) => (box.textContent = ''));
     firstPlayer = [];
     secondPlayer = [];
