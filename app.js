@@ -134,7 +134,6 @@ const gameBoard = () => {
     mainContainer.style.setProperty('--blur', 'blur(2px)');
   };
   if (twoPlayerGame == true) {
-    gameStart = true;
     playerText.textContent = `${
       playerInputs[1].value === '' ? 'Player 1' : playerInputs[1].value
     }`;
